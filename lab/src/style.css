@@ -1,0 +1,28 @@
+body{
+    background-image:("../image/notas-ancladas.png");
+    background-color:#F2D5EA;;
+}
+.login{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Ubuntu', sans-serif;
+}
+h1{
+    font-family: 'PT Serif', serif;
+}
+.button{
+    width: 18em;
+    height: 2.5em;
+    border: none;
+    border-radius: 0.3em;
+    margin: 0.5em; 
+    font-family: 'Ubuntu', sans-serif;
+    background-color: #2CB1BF;
+}
+.notes{
+    
+}
+   
+
