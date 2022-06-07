@@ -1,7 +1,10 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore/lite";
-import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+import { GoogleAuthProvider, signInWithPopup, getAuth } from "firebase/auth";
+import { collection, addDoc, getDocs } from "firebase/firestore";
+
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
     apiKey:process.env.REACT_APP_FIREBASE_APIKEY,
@@ -15,8 +18,29 @@ const firebaseConfig = {
 
 
 // Initialize Firebase
- export const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
- export const auth = getAuth(app);
+ const app = initializeApp(firebaseConfig);
+ const db = getFirestore(app);
+ const auth = getAuth(app);
 
-export default db;
+
+
+//Login google
+ export const authGoogle = () => {
+  const provider = new GoogleAuthProvider();
+  return signInWithPopup(auth, provider)
+   
+ };
+
+//Para guardar Post
+
+  export const saveNote = async (title, description, userId) => {
+  // const db = getFirestore(); 
+  const docRef= await addDoc( //variable!
+    collection(db, 'notes'),{
+      title: title ,
+      description: description,
+      // userId: userId
+    }
+  );
+  console.log(docRef)
+}

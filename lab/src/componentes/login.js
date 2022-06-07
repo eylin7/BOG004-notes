@@ -1,31 +1,23 @@
-import React, { useEffect } from "react";
+import React from "react";
 import '../style.css'
-import { collection, getDocs,  } from "firebase/firestore/lite";
-import db from "../firebase/firebaseConfig";
-import {getAuth, GoogleAuthProvider, signInWithPopup} from "../firebase/firebaseControler.js" 
 import { useNavigate} from 'react-router-dom';
+import {authGoogle} from '../firebase/firebaseConfig'
 // import { async } from '@firebase/util';
 
-  const Login = () => {  
+const Login = () => {  
   const navigate = useNavigate()
-  useEffect(() => {
-      const obtenerDatos = async () => {
-      const data = await getDocs(collection( db , "notes" ));
-      console.log("dataaaaaa", data);
-    }
-   obtenerDatos();
-  }, []);
-  
-    const authGoogle = () => {
-    const provider = new GoogleAuthProvider();
-    navigate('/Notes');
-    const auth = getAuth();
-    return signInWithPopup(auth, provider);
+  const loginWthGoogle = () => {
+    authGoogle().then((result) => {
+      navigate('/Notes');
+      console.log(result);
+    })
+     .catch(error => console.log(error))
   };
-  // interfaz 
+  
   return (
     <div className="login">
-      <h1>you always can notes</h1>
+      <h1 className="titulo-login" >you always can notes</h1>
+      <div className="imagen-titulo" ></div>
       <label htmlFor="username">
         <span></span>
         {<input id="nameUsuario" type="text" placeholder="Usuario"></input>}
@@ -36,10 +28,11 @@ import { useNavigate} from 'react-router-dom';
             placeholder="contraseña"
           ></input>
         }
-        {<button className="button" onClick={authGoogle}> Ingresar con google</button>}
+        {<button className="button" onClick={loginWthGoogle}> Ingresar con google</button>}
       </label>
     </div>
   );
 };
 
 export default Login;
+

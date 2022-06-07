@@ -1,5 +1,5 @@
 body{
-    background-image:("../image/notas-ancladas.png");
+   
     background-color:#F2D5EA;;
 }
 .login{
@@ -9,8 +9,13 @@ body{
     align-items: center;
     font-family: 'Ubuntu', sans-serif;
 }
-h1{
+.titulo-login{
     font-family: 'PT Serif', serif;
+}
+.imagen-titulo{
+    height: 200px;
+    width: 200px;
+    background-image: url("image/notas-ancladas.png");
 }
 .button{
     width: 18em;
@@ -21,8 +26,6 @@ h1{
     font-family: 'Ubuntu', sans-serif;
     background-color: #2CB1BF;
 }
-.notes{
-    
-}
+
    
 
