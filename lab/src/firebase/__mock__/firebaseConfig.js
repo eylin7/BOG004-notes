@@ -1,1 +1,1 @@
-export const getAuth = () => Promise.resolve({});
+// export const getAuth = () => Promise.resolve({});

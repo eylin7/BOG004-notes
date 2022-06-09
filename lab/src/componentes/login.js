@@ -1,5 +1,5 @@
 import React from "react";
-import '../style.css'
+import '../componentes/login.css'
 import { useNavigate} from 'react-router-dom';
 import {authGoogle} from '../firebase/firebaseConfig'
 // import { async } from '@firebase/util';
@@ -20,14 +20,7 @@ const Login = () => {
       <div className="imagen-titulo" ></div>
       <label htmlFor="username">
         <span></span>
-        {<input id="nameUsuario" type="text" placeholder="Usuario"></input>}
-        {
-          <input
-            id="nameUsuario"
-            type="password"
-            placeholder="contraseña"
-          ></input>
-        }
+         
         {<button className="button" onClick={loginWthGoogle}> Ingresar con google</button>}
       </label>
     </div>
