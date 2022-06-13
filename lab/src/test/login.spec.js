@@ -1,22 +1,19 @@
-import { render, screen } from "@testing-library/react";
-import { useNavigate, userEvent} from 'react-router-dom';
-import React from "react";
- import {Login} from '../componentes/login.js'
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import  Login  from "../componentes/login";
+import Notes from "../componentes/notes";
+import { Router, Route, Routes } from "react-router-dom";
+import { createMemoryHistory } from 'history';
 // import {Router} from '../componentes/App.js'
-  
-jest.mock('../firebase/firebaseConfig.jss');
 
-test( 'router', async () => {
-    const navigate = useNavigate();
-   
+jest.mock("../firebase/firebaseConfig.js");
 
-    render(<Login/>)
-    navigate('/Notes');
-    expect(screen.getByText(/you always can notes/i)).toBeInTheDocument()
-
-    const user = userEvent.setup()
-
-    await user.click(screen.getByText(/you always can notes/i))
-})
-
-
+test("router", async () => {
+    const history = createMemoryHistory({ initialEntries: [''] });
+  render(<Router navigator={history} location={history.location} > <Routes>
+    <Route path="" element={<Login/>}/>
+    <Route path="/Notes" element={<Notes/>} />
+   </Routes></Router>);
+  fireEvent.click(screen.getByText("Ingresar con google"));
+  await waitFor(() => screen.getByText(/you always can notes/i));
+  expect(screen.getByText(/you always can notes/i)).toBeInTheDocument();
+});

@@ -4,7 +4,7 @@ import Notes from "./notes.js";
 import Login from './login.js';
 
 
-const Router = () => {
+const Router = () => { //cambiar el nombre del componente
   return (
     <Routes>
       <Route path="/" element={<Login/>} />

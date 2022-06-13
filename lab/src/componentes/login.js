@@ -8,6 +8,7 @@ const Login = () => {
   const navigate = useNavigate()
   const loginWthGoogle = () => {
     authGoogle().then((result) => {
+      console.log("estoy en el then");
       navigate('/Notes');
       console.log(result);
     })
