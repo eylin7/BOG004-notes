@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { GoogleAuthProvider, signInWithPopup, getAuth } from "firebase/auth";
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import { collection, addDoc, getDocs, getDoc, updateDoc, doc} from "firebase/firestore";
 
 
 // Your web app's Firebase configuration
@@ -31,7 +31,7 @@ const firebaseConfig = {
    
  };
 
-//Para guardar Post
+//Para guardar nota
 
   export const saveNote = async (title, description, userId) => {
   // const db = getFirestore(); 
@@ -50,7 +50,23 @@ const firebaseConfig = {
   const notes = [];
   data.forEach(item =>{
     //console.log("dataaa", item.data());
-    notes.push({title: item.data().title, description: item.data().description})
+    notes.push({title: item.data().title, description: item.data().description, id : item.id})
   })
   return notes;
   }
+  // Para traer una Nota editada
+  export const getNote= async (id) => {
+    const db = getFirestore();
+   const noteEdit = await getDoc(doc(db, 'notes', id));
+   console.log('holaaa', noteEdit)
+   return noteEdit;
+ };
+
+ //Para Actucalizar la Nota editada
+ export const editNote = async(id, title, description) =>{
+ const note= doc(db, "notes", id);
+ await updateDoc(note, {
+   title,
+   description
+ });
+};

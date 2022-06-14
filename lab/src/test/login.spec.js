@@ -3,6 +3,7 @@ import  Login  from "../componentes/login";
 import Notes from "../componentes/notes";
 import { Router, Route, Routes } from "react-router-dom";
 import { createMemoryHistory } from 'history';
+import '@testing-library/jest-dom'
 // import {Router} from '../componentes/App.js'
 
 jest.mock("../firebase/firebaseConfig.js");
@@ -16,4 +17,5 @@ test("router", async () => {
   fireEvent.click(screen.getByText("Ingresar con google"));
   await waitFor(() => screen.getByText(/you always can notes/i));
   expect(screen.getByText(/you always can notes/i)).toBeInTheDocument();
+  expect(history.location.pathname).toBe('/Notes');
 });

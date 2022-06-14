@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { Fragment, useEffect } from "react";
 import { useState } from "react";
 import "../componentes/notes.css";
-import { saveNote, getNotes } from "../firebase/firebaseConfig";
+import { saveNote, getNotes, editNote } from "../firebase/firebaseConfig";
+import { Note } from "./Note";
 
 const Notes = () => {
   const [commentText, setCommentText] = useState(""); //es el estado inicial 
@@ -24,7 +25,12 @@ const Notes = () => {
     setNotes(notes);
     // cuando crean una nueva nota [...notes, newNote]s
     console.log(notes);
+
   };
+  const editNoteWall = (id)=>{
+    editNote(id, title, commentText)
+    console.log("ID", id);
+      }
 
   return (
     <div className="notesContainer">
@@ -46,13 +52,17 @@ const Notes = () => {
         />
 
         <button onClick={saveNoteWall}>Publicar</button>
-
         {notes.map((note, index) => (
-          <div key={index}>
-            <p>{note.title}</p>
-            <p>{note.description}</p>
-          </div>
+        <Fragment key={index}  >
+        <div>HOLAAAAAAAAAAAA</div>
+         <Note 
+          title={note.title} 
+          description={note.description}
+         editNoteWall={()=> {editNoteWall(note.id)}}
+          />
+        </Fragment>
         ))}
+        
       </div>
       <div className="notesFooter"></div>
     </div>
