@@ -2,7 +2,7 @@ import React from "react";
 
 //Para pintar las notas en la interfaz
 //Aca recibimos los props
-export const Note = ({title, description, editNoteWall}) => {
+export const Note = ({title, description, editNoteWall, deleTe}) => {
   
   return (
     <div className="menu">
@@ -11,6 +11,9 @@ export const Note = ({title, description, editNoteWall}) => {
         <article><p>{description}</p></article>
         <button type="button" onClick={editNoteWall} >
         Editar
+      </button>
+      <button type="button" onClick={deleTe} >
+       eliminar
       </button>
       </div>
     </div>

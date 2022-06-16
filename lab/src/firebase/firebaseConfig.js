@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { GoogleAuthProvider, signInWithPopup, getAuth } from "firebase/auth";
-import { collection, addDoc, getDocs, getDoc, updateDoc, doc} from "firebase/firestore";
+import { collection, addDoc, getDocs, getDoc, updateDoc, doc, deleteDoc} from "firebase/firestore";
 
 
 // Your web app's Firebase configuration
@@ -64,9 +64,15 @@ const firebaseConfig = {
 
  //Para Actucalizar la Nota editada
  export const editNote = async(id, title, description) =>{
- const note= doc(db, "notes", id);
- await updateDoc(note, {
-   title,
-   description
- });
+  console.log('idddd', id);
+  const note= doc(db, "notes", id);
+  await updateDoc(note, {
+    title,
+    description
+  });
+};
+// Eliminando nota
+export const deleteNote= (id) => {
+  const db = getFirestore();
+  return deleteDoc(doc(db, "notes", id));
 };

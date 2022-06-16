@@ -15,7 +15,8 @@ test("router", async () => {
     <Route path="/Notes" element={<Notes/>} />
    </Routes></Router>);
   fireEvent.click(screen.getByText("Ingresar con google"));
-  await waitFor(() => screen.getByText(/you always can notes/i));
-  expect(screen.getByText(/you always can notes/i)).toBeInTheDocument();
+  await waitFor(() => screen.getByText(/Welcome/i));
+  expect(screen.getByText(/Welcome/i)).toBeInTheDocument();
   expect(history.location.pathname).toBe('/Notes');
 });
+
