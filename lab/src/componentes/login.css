@@ -15,15 +15,22 @@ body{
 }
     
 
-.button{
+.button {
     width: 18em;
     height: 2.5em;
     border: none;
     border-radius: 0.3em;
     margin: 0.5em; 
-    font-family: 'Ubuntu', sans-serif;
-    background-color: #4f6230c7;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1em;
+    background-color:#9ac7d2ee;;
 }
+.button :hover{
+    top: 100%;
+    transition: 1s;
+    transition-delay: 0,25s;
+}
+
 .logo{
     display: flex;
     flex-direction: column;

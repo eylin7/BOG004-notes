@@ -1,7 +1,12 @@
 import React, { Fragment, useEffect } from "react";
 import { useState } from "react";
 import "../componentes/notes.css";
-import { saveNote, getNotes, editNote, deleteNote } from "../firebase/firebaseConfig";
+import {
+  saveNote,
+  getNotes,
+  editNote,
+  deleteNote,
+} from "../firebase/firebaseConfig";
 import { Note } from "./Note";
 import { useNavigate } from "react-router-dom";
 
@@ -43,30 +48,30 @@ const Notes = () => {
     setThisNote(note);
   };
   const setTitle = (title) => {
-    setThisNote((prev) => ({ ...prev, title }));
+    setThisNote((prev) => ({ ...prev, title })); // Hace referencia al estado previo de la variable
   };
   const setDescription = (description) => {
     setThisNote((prev) => ({ ...prev, description }));
   };
 
   //Para eliminar la nota
-  const deleTe = (id)=> {
-   deleteNote(id)
-   getListNotes();
-  }
+  const deleTe = (id) => {
+    deleteNote(id);
+    getListNotes();
+  };
 
   //Cerrar sesión con el boton
-  let Navigate= useNavigate()
-  function signOff(e){
+  let Navigate = useNavigate();
+  function signOff(e) {
     e.preventDefault();
-    console.log("click")
-    Navigate("/")
+    console.log("click");
+    Navigate("/");
   }
 
   return (
     <div className="notesContainer">
       <div className="notasHeader">
-        <h1>you always can notes</h1>
+        <img src={require("../image/Logo-pequeńo.png")} />
       </div>
       <div className="notesBody">
         <input
@@ -81,26 +86,33 @@ const Notes = () => {
           onChange={(e) => setDescription(e.target.value)}
           placeholder="Descripcion"
         />
-
-        <button onClick={saveNoteWall}>Publicar</button>
-        {notes.map((note, index) => (
-          <Fragment key={index}>
-            <div>HOLAAAAAAAAAAAA</div>
-            <Note
-              title={note.title}
-              description={note.description}
-              editNoteWall={() => {
-                editNoteWall(note);
-              }}
-              deleTe={() =>{deleTe(note.id)}}
-            />
-          </Fragment>
-        ))}
-        <button className="public" onClick={signOff}>
-       Cerrar seción
+         <button className="btn-publicar" onClick={saveNoteWall}>
+        Publicar
       </button>
       </div>
-      <div className="notesFooter"></div>
+      <div className="tarjetas" >
+      {notes.map((note, index) => (
+        <Fragment key={index}>
+          <div></div>
+          <Note
+            title={note.title}
+            description={note.description}
+            editNoteWall={() => {
+              editNoteWall(note);
+            }}
+            deleTe={() => {
+              deleTe(note.id);
+            }}
+          />
+        </Fragment>
+      ))}
+      </div>
+      <button className="btn-cerrar-sesion" onClick={signOff}>
+        Cerrar sesión
+      </button>
+      <footer className="notesFooter">
+      <h1>Eylin Urdaneta</h1>
+    </footer>
     </div>
   );
 };

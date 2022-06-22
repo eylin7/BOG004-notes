@@ -5,15 +5,15 @@ import React from "react";
 export const Note = ({title, description, editNoteWall, deleTe}) => {
   
   return (
-    <div className="menu">
-      <div className="menu-main__container">
+    <div className="woll">
+      <div className="container-tarjetas">
         <article><h2>{title}</h2></article>
         <article><p>{description}</p></article>
-        <button type="button" onClick={editNoteWall} >
+        <button className="btn-editar" type="button" onClick={editNoteWall} >
         Editar
       </button>
-      <button type="button" onClick={deleTe} >
-       eliminar
+      <button className="btn-eliminar" type="button" onClick={deleTe} >
+       Eliminar
       </button>
       </div>
     </div>
